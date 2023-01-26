@@ -4,6 +4,10 @@ const mongoose = require('mongoose')
 
 const app = express()
 
+app.get('/', (req, res) => {
+  res.send('Shopasi Api')
+})
+
 const port = process.env.PORT
 
 app.listen(port,
