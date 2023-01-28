@@ -2,6 +2,8 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const swaggerJsDocs = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express')
 
 const app = express()
 
