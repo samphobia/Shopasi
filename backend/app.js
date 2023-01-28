@@ -2,10 +2,50 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const swaggerJsDocs = require('swagger-jsdoc')
+const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 
+const options = {
+  definition: {
+    openapi:  "3.0.0",
+    info: {
+      title: "Shopasi API Collections",
+      version: "1.0.0",
+      description: "SHOPASI SOFTWARE API v2.2"
+    },
+    components: {
+      securitySchemas: {
+        bearerAuth: {
+          type: 'http',
+          schema: 'bearer',
+          bearerFormat: "JWT"
+        }
+      }
+    },
+    security: [
+      {
+        bearerAuth: [],
+      }
+    ],
+    servers: [
+      {
+        url: "https://plum-nutty-oyster.cyclic.app/"
+              
+      },
+      {
+        url: "http://localhost:3220/"
+      }
+    ],
+  },
+
+  apis: ["./routes/*.js"]
+}
+
 const app = express()
+
+const specs = swaggerJsDoc(options)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 
 app.get('/', (req, res) => {
   res.send('Shopasi Api')
