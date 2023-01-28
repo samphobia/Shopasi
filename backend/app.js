@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 
+
 const options = {
   definition: {
     openapi:  "3.0.0",
@@ -50,6 +51,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 app.get('/', (req, res) => {
   res.send('Shopasi Api')
 })
+
+const dataRoutes = require('./routes/data')
+
+app.use('/scraper',  dataRoutes)
 
 const port = process.env.PORT
 
