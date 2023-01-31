@@ -6,9 +6,16 @@ const scrapeController = require('../controllers/scrape')
 
 const router = express.Router()
 
+// /**
+//  * @swagger
+//  * tags:
+//  *  name: Scraper
+//  *  description: serach a site
+//  */
+
 /**
  * @swagger
- * /scrape/search:
+ * /scraper/search:
  *  post:
  *    summary: Searches keywords in a website
  *    requestBody:
@@ -20,7 +27,7 @@ const router = express.Router()
  *            properties:
  *              siteUrl:
  *                type: string
- *    tags: [Authentication]
+ *    tags: [Scraper]
  *    responses: 
  *      200:
  *        description: created new user

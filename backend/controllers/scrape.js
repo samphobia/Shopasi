@@ -5,6 +5,7 @@ const Data = require('../models/data')
 
 exports.scrape = (req, res, next) => {
   const siteUrl = req.body.siteUrl
+  console.log(siteUrl)
   request(siteUrl, (error, response, html) => {
     if (!error && response.statusCode == 200) {
       const $ = cheerio.load(html)
@@ -18,6 +19,9 @@ exports.scrape = (req, res, next) => {
         })
 
         data.save()
+        if (err) {
+          console.log(`MongoDb save error: ${err}`)
+        }
       })
     }
   })

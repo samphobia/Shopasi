@@ -29,10 +29,10 @@ const options = {
       }
     ],
     servers: [
-      {
-        url: "https://plum-nutty-oyster.cyclic.app/"
+      // {
+      //   url: "https://plum-nutty-oyster.cyclic.app/"
               
-      },
+      // },
       {
         url: "http://localhost:3220/"
       }
@@ -47,6 +47,11 @@ const app = express()
 const specs = swaggerJsDoc(options)
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
+
+app.use(express.json())
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
   res.send('Shopasi Api')
